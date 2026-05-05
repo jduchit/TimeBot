@@ -12,7 +12,6 @@ import type { TimeEntry, TimeEntryDraft, Project, AIProvider, APIKeys } from './
 // ---------------------------------------------------------------------------
 // Tipos internos del store
 // ---------------------------------------------------------------------------
-
 /*
   Resultado de intentar agregar un proyecto
   'duplicate' indica que ya existe un proyecto con el mismo nombre
@@ -32,7 +31,6 @@ interface TimeBotStats {
 // ---------------------------------------------------------------------------
 // Contrato del store
 // ---------------------------------------------------------------------------
-
 /*
   Define todas las propiedades y acciones disponibles en el estado global
   Cada seccion agrupa estado relacionado con sus acciones correspondientes
@@ -71,7 +69,6 @@ interface TimeBotStore {
 // ---------------------------------------------------------------------------
 // Implementacion del store
 // ---------------------------------------------------------------------------
-
 export const useTimeBotStore = create<TimeBotStore>()(
   persist(
     (set, get) => ({
@@ -90,7 +87,6 @@ export const useTimeBotStore = create<TimeBotStore>()(
       // -----------------------------------------------------------------
       // Acciones de registros de tiempo
       // -----------------------------------------------------------------
-
       /*
         Agrega uno o mas registros asignando un id unico a cada uno
         El id se genera en el cliente con crypto.randomUUID()
@@ -134,7 +130,6 @@ export const useTimeBotStore = create<TimeBotStore>()(
       // -----------------------------------------------------------------
       // Acciones de proyectos
       // -----------------------------------------------------------------
-
       /*
         Agrega un proyecto nuevo validando que el nombre no este vacio
         y que no exista otro proyecto con el mismo nombre sin distincion de mayusculas
@@ -191,7 +186,6 @@ export const useTimeBotStore = create<TimeBotStore>()(
       // -----------------------------------------------------------------
       // Acciones de proveedor de IA
       // -----------------------------------------------------------------
-
       setAIProvider: (provider) => {
         set({ aiProvider: provider })
       },
@@ -199,7 +193,6 @@ export const useTimeBotStore = create<TimeBotStore>()(
       // -----------------------------------------------------------------
       // Acciones de credenciales
       // -----------------------------------------------------------------
-
       /*
         Actualiza la key de un proveedor especifico sin tocar las demas
       */
@@ -220,7 +213,6 @@ export const useTimeBotStore = create<TimeBotStore>()(
       // -----------------------------------------------------------------
       // Estadisticas
       // -----------------------------------------------------------------
-
       /*
         Calcula estadisticas en tiempo real desde los registros actuales
         No se persiste, se recalcula cada vez que se llama
@@ -241,7 +233,7 @@ export const useTimeBotStore = create<TimeBotStore>()(
       storage: createJSONStorage(() => localStorage),
 
       /*
-        Las API keys se excluyen de la persistencia deliberadamente
+        Las API keys se excluyen de la persistencia
         Guardar credenciales en localStorage en texto plano es un riesgo de seguridad
         El usuario debe ingresarlas nuevamente en cada sesion
       */
